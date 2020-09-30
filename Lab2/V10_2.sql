@@ -1,8 +1,10 @@
 USE AdventureWorks2012;
 GO
+
 -- TASK 1
 CREATE TABLE dbo.Employee
 	(
+		BusinessEntityID int NOT NULL,
 		NationalIDNumber nvarchar(15) NOT NULL,
 		LoginID nvarchar(256) NOT NULL,
 		JobTitle nvarchar(50) NOT NULL,
@@ -31,7 +33,9 @@ ALTER TABLE dbo.Employee
 		DEFAULT GETDATE() FOR HireDate;
 
 -- TASK 5
+
 INSERT INTO dbo.Employee(
+	BusinessEntityID,
 	NationalIDNumber,
 	LoginID,
 	JobTitle,
@@ -42,6 +46,7 @@ INSERT INTO dbo.Employee(
 	SickLeaveHours,
 	ModifiedDate)
 SELECT
+	HumanResources.Employee.BusinessEntityID,
 	NationalIDNumber,
 	LoginID,
 	JobTitle,
